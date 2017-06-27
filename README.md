@@ -63,7 +63,7 @@ Eclipse中执行maven命令
 
 ## 方式一：参数方式访问 ##
 
-http://localhost:8080/courses/view2/345
+http://localhost:8080/courses/view?courseId=123
 
 	// 本方法将处理 /courses/view?courseId=123 形式的URL
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
@@ -102,6 +102,23 @@ console：
 
 
 4-4 Controller-传统方式 (04:24)
+
+## 方式三：传统的传参方式 ##
+
+	// 本方法将处理 /courses/view3?courseId=456 形式的URL
+	@RequestMapping("/view3")
+	public String viewCourse3(HttpServletRequest request) {
+		Integer courseId = Integer.valueOf(request.getParameter("courseId"));
+		log.debug("In viewCourse3, courseId = {}", courseId);
+		Course course = courseService.getCoursebyId(courseId);
+		request.setAttribute("course", course);
+		return "course_overview";
+	}
+
+console：
+
+	26116 [qtp8136897-16] DEBUG com.coderdream.mvcdemo.controller.CourseController  - In viewCourse3, courseId = 456
+	26116 [qtp8136897-16] DEBUG com.coderdream.mvcdemo.controller.CourseController  - In viewCourse3, courseId = 456
 
 4-5 Binding (11:51)
 

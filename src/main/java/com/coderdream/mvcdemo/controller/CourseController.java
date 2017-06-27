@@ -2,6 +2,8 @@ package com.coderdream.mvcdemo.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,13 +41,23 @@ public class CourseController {
 		return "course_overview";
 	}
 
-	// 本方法将处理 /courses/view2/123 形式的URL
+	// 本方法将处理 /courses/view2/345 形式的URL
 	@RequestMapping("/view2/{courseId}")
 	public String viewCourse2(@PathVariable("courseId") Integer courseId,
 			Map<String, Object> model) {
 		log.debug("In viewCourse2, courseId = {}", courseId);
 		Course course = courseService.getCoursebyId(courseId);
 		model.put("course", course);
+		return "course_overview";
+	}
+
+	// 本方法将处理 /courses/view3?courseId=456 形式的URL
+	@RequestMapping("/view3")
+	public String viewCourse3(HttpServletRequest request) {
+		Integer courseId = Integer.valueOf(request.getParameter("courseId"));
+		log.debug("In viewCourse3, courseId = {}", courseId);
+		Course course = courseService.getCoursebyId(courseId);
+		request.setAttribute("course", course);
 		return "course_overview";
 	}
 }
