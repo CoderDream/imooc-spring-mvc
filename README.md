@@ -59,9 +59,9 @@ Eclipse中执行maven命令
 
 4-2 Controller-基础代码 (06:00)
 
-# 4-3 Controller-现代方式 (08:41) #
+### 4-3 Controller-现代方式 (08:41) ###
 
-## 方式一：参数方式访问 ##
+#### 方式一：参数方式访问 ####
 
 http://localhost:8080/courses/view?courseId=123
 
@@ -80,7 +80,7 @@ console：
 	8180 [qtp117460541-14] DEBUG com.coderdream.mvcdemo.controller.CourseController  - In viewCourse, courseId = 123
 
 
-## 方式二：RESTful方式访问 ##
+#### 方式二：RESTful方式访问 ####
 
 http://localhost:8080/courses/view2/345
 
@@ -99,9 +99,9 @@ console：
 	40501 [qtp635001030-18] DEBUG com.coderdream.mvcdemo.controller.CourseController  - In viewCourse2, courseId = 345
 
 
-# 4-4 Controller-传统方式 (04:24) #
+### 4-4 Controller-传统方式 (04:24) ###
 
-## 方式三：传统的传参方式 ##
+#### 方式三：传统的传参方式 ####
 
 [http://localhost:8080/courses/view3?courseId=456](http://localhost:8080/courses/view3?courseId=456)
 
@@ -119,7 +119,7 @@ console：
 
 	26116 [qtp8136897-16] DEBUG com.coderdream.mvcdemo.controller.CourseController  - In viewCourse3, courseId = 456
 
-# 4-5 Binding (11:51) #
+### 4-5 Binding (11:51) ###
 
 绑定name，jsp页面控件的name要与模型中的名称匹配
 
@@ -150,7 +150,7 @@ console：
 ![](https://raw.githubusercontent.com/CoderDream/imooc-spring-mvc/master/snapshot/imooc_spring_mvc_040601.png)
 
 
-4-6 FileUpload--单文件上传 (12:54)
+### 4-6 FileUpload--单文件上传 (12:54) ###
 
 
 mvc-dispatcher-servlet.xml
