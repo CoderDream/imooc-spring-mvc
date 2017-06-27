@@ -147,7 +147,7 @@ console：
 	
 	145206 [qtp215614514-13] DEBUG com.coderdream.mvcdemo.controller.CourseController  - com.coderdream.mvcdemo.model.Course@71440f88[courseId=<null>,title=Test课程,imgPath=<null>,learningNum=<null>,duration=1200,level=1,levelDesc=<null>,descr=Spring MVC,chapterList=<null>]
 
-![](https://raw.githubusercontent.com/CoderDream/imooc-spring-mvc/master/snapshot/imooc_spring_mvc_040601.png)
+![](https://raw.githubusercontent.com/CoderDream/imooc-spring-mvc/master/snapshot/imooc_spring_mvc_040501.png)
 
 
 ### 4-6 FileUpload--单文件上传 (12:54) ###
