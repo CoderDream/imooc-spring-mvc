@@ -30,26 +30,19 @@
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 	<!-- 配置ViewResolver。 可以用多个ViewResolver。 使用order属性排序。 InternalResourceViewResolver放在最后。 -->
-	<bean
-		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-		<property name="order" value="1" />
+	<bean id="contentNegotiationManager"
+		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<property name="favorPathExtension" value="true" />
+		<property name="favorParameter" value="true" />
+		<property name="parameterName" value="format" />
+		<property name="ignoreAcceptHeader" value="false" />
 		<property name="mediaTypes">
-			<map>
-				<entry key="json" value="application/json" />
-				<entry key="xml" value="application/xml" />
-				<entry key="htm" value="text/html" />
-			</map>
+			<value>
+				json=application/json
+				xml=application/xml
+			</value>
 		</property>
-
-		<property name="defaultViews">
-			<list>
-				<!-- JSON View -->
-				<bean
-					class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
-				</bean>
-			</list>
-		</property>
-		<property name="ignoreAcceptHeader" value="true" />
+		<property name="defaultContentType" value="text/html" />
 	</bean>
 
 	<bean

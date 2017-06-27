@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 
 import com.coderdream.mvcdemo.model.Course;
 import com.coderdream.mvcdemo.service.CourseService;
@@ -37,6 +38,7 @@ public class CourseController {
 
 	@Autowired
 	public void setCourseService(CourseService courseService) {
+		ContentNegotiatingViewResolver c = null;
 		this.courseService = courseService;
 	}
 
