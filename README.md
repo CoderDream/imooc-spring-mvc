@@ -37,10 +37,11 @@ Spring MVC起步
 
 3-5 Hello Spring MVC (12:51)
 
+执行结果：
 
-步骤：
+![](https://raw.githubusercontent.com/CoderDream/imooc-spring-mvc/master/snapshot/imooc_spring_mvc_030501.png)
 
-	
+步骤：	
 
 	1. 右击需要执行maven命令的工程，选择"Debug As"或"Run As"，再选择"Maven build..."
 	2. Goals:输入我们需要执行的maven命令，一次执行多个命令用空格隔开。
