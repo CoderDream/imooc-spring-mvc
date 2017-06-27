@@ -105,6 +105,8 @@ console：
 
 ## 方式三：传统的传参方式 ##
 
+[http://localhost:8080/courses/view3?courseId=456](http://localhost:8080/courses/view3?courseId=456)
+
 	// 本方法将处理 /courses/view3?courseId=456 形式的URL
 	@RequestMapping("/view3")
 	public String viewCourse3(HttpServletRequest request) {
@@ -121,6 +123,34 @@ console：
 	26116 [qtp8136897-16] DEBUG com.coderdream.mvcdemo.controller.CourseController  - In viewCourse3, courseId = 456
 
 4-5 Binding (11:51)
+
+绑定name，jsp页面控件的name要与模型中的名称匹配
+
+	// 访问路径/admin?add
+	@RequestMapping(value = "/admin", method = RequestMethod.GET, params = "add")
+	public String createCourse() {
+		return "course_admin/edit";
+	}
+
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public String doSave(@ModelAttribute Course course) {
+		log.debug("Info of Course:");
+		// 输出对象的键值对
+		log.debug(ReflectionToStringBuilder.toString(course));
+
+		// 在此进行业务操作，比如数据库持久化
+		course.setCourseId(123);
+		
+		// 重定向
+		return "redirect:view2/" + course.getCourseId();
+	}
+
+
+console：
+	
+	145206 [qtp215614514-13] DEBUG com.coderdream.mvcdemo.controller.CourseController  - com.coderdream.mvcdemo.model.Course@71440f88[courseId=<null>,title=Test课程,imgPath=<null>,learningNum=<null>,duration=1200,level=1,levelDesc=<null>,descr=Spring MVC,chapterList=<null>]
+	145206 [qtp215614514-13] DEBUG com.coderdream.mvcdemo.controller.CourseController  - com.coderdream.mvcdemo.model.Course@71440f88[courseId=<null>,title=Test课程,imgPath=<null>,learningNum=<null>,duration=1200,level=1,levelDesc=<null>,descr=Spring MVC,chapterList=<null>]
+
 
 4-6 FileUpload--单文件上传 (12:54)
 
