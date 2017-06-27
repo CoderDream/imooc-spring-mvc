@@ -59,7 +59,7 @@ Eclipse中执行maven命令
 
 4-2 Controller-基础代码 (06:00)
 
-4-3 Controller-现代方式 (08:41)
+# 4-3 Controller-现代方式 (08:41) #
 
 ## 方式一：参数方式访问 ##
 
@@ -77,7 +77,6 @@ http://localhost:8080/courses/view?courseId=123
 
 console：
 
-	8180 [qtp117460541-14] DEBUG com.coderdream.mvcdemo.controller.CourseController  - In viewCourse, courseId = 123
 	8180 [qtp117460541-14] DEBUG com.coderdream.mvcdemo.controller.CourseController  - In viewCourse, courseId = 123
 
 
@@ -98,10 +97,9 @@ http://localhost:8080/courses/view2/345
 console：
 
 	40501 [qtp635001030-18] DEBUG com.coderdream.mvcdemo.controller.CourseController  - In viewCourse2, courseId = 345
-	40501 [qtp635001030-18] DEBUG com.coderdream.mvcdemo.controller.CourseController  - In viewCourse2, courseId = 345
 
 
-4-4 Controller-传统方式 (04:24)
+# 4-4 Controller-传统方式 (04:24) #
 
 ## 方式三：传统的传参方式 ##
 
@@ -120,9 +118,8 @@ console：
 console：
 
 	26116 [qtp8136897-16] DEBUG com.coderdream.mvcdemo.controller.CourseController  - In viewCourse3, courseId = 456
-	26116 [qtp8136897-16] DEBUG com.coderdream.mvcdemo.controller.CourseController  - In viewCourse3, courseId = 456
 
-4-5 Binding (11:51)
+# 4-5 Binding (11:51) #
 
 绑定name，jsp页面控件的name要与模型中的名称匹配
 
@@ -149,10 +146,52 @@ console：
 console：
 	
 	145206 [qtp215614514-13] DEBUG com.coderdream.mvcdemo.controller.CourseController  - com.coderdream.mvcdemo.model.Course@71440f88[courseId=<null>,title=Test课程,imgPath=<null>,learningNum=<null>,duration=1200,level=1,levelDesc=<null>,descr=Spring MVC,chapterList=<null>]
-	145206 [qtp215614514-13] DEBUG com.coderdream.mvcdemo.controller.CourseController  - com.coderdream.mvcdemo.model.Course@71440f88[courseId=<null>,title=Test课程,imgPath=<null>,learningNum=<null>,duration=1200,level=1,levelDesc=<null>,descr=Spring MVC,chapterList=<null>]
+
+![](https://raw.githubusercontent.com/CoderDream/imooc-spring-mvc/master/snapshot/imooc_spring_mvc_040601.png)
 
 
 4-6 FileUpload--单文件上传 (12:54)
+
+
+mvc-dispatcher-servlet.xml
+
+	<!--200*1024*1024即200M resolveLazily属性启用是为了推迟文件解析，以便捕获文件大小异常 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="209715200" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="resolveLazily" value="true" />
+	</bean>
+
+CourseController.java
+
+	@RequestMapping(value = "/upload", method = RequestMethod.GET)
+	public String showUploadPage() {
+		return "course_admin/file";
+	}
+
+	@RequestMapping(value = "/doUpload", method = RequestMethod.POST)
+	public String doUploadFile(@RequestParam("file") MultipartFile file)
+			throws IOException {
+		if (!file.isEmpty()) {
+			log.debug("Process file: {}", file.getOriginalFilename());
+			FileUtils.copyInputStreamToFile(file.getInputStream(), new File(
+					"c:\\temp\\",
+					System.currentTimeMillis() + file.getOriginalFilename()));
+		}
+		return "success";
+	}
+
+console：
+
+	19319 [qtp196025267-19] DEBUG com.coderdream.mvcdemo.controller.CourseController  - Process file: mvc_0001.png
+	19319 [qtp196025267-19] DEBUG com.coderdream.mvcdemo.controller.CourseController  - Process file: mvc_0001.png
+
+运行结果：
+
+![](https://raw.githubusercontent.com/CoderDream/imooc-spring-mvc/master/snapshot/imooc_spring_mvc_040601.png)
+
+![](https://raw.githubusercontent.com/CoderDream/imooc-spring-mvc/master/snapshot/imooc_spring_mvc_040602.png)
 
 4-7 JSON（上） (03:41)
 
