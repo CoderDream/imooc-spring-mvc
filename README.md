@@ -35,7 +35,7 @@ Spring MVC起步
 
 3-4 用Maven创建项目 (05:10)
 
-3-5 Hello Spring MVC (12:51)
+3-5 Hello Spring MVC (12:51) [代码结构](https://github.com/CoderDream/imooc-spring-mvc/blob/master/v0.3.5.md)
 
 执行结果：
 
