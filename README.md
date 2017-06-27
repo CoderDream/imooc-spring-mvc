@@ -61,6 +61,46 @@ Eclipse中执行maven命令
 
 4-3 Controller-现代方式 (08:41)
 
+## 方式一：参数方式访问 ##
+
+http://localhost:8080/courses/view2/345
+
+	// 本方法将处理 /courses/view?courseId=123 形式的URL
+	@RequestMapping(value = "/view", method = RequestMethod.GET)
+	public String viewCourse(@RequestParam("courseId") Integer courseId,
+			Model model) {
+		log.debug("In viewCourse, courseId = {}", courseId);
+		Course course = courseService.getCoursebyId(courseId);
+		model.addAttribute(course);
+		return "course_overview";
+	}
+
+console：
+
+	8180 [qtp117460541-14] DEBUG com.coderdream.mvcdemo.controller.CourseController  - In viewCourse, courseId = 123
+	8180 [qtp117460541-14] DEBUG com.coderdream.mvcdemo.controller.CourseController  - In viewCourse, courseId = 123
+
+
+## 方式二：RESTful方式访问 ##
+
+http://localhost:8080/courses/view2/345
+
+	// 本方法将处理 /courses/view2/123 形式的URL
+	@RequestMapping("/view2/{courseId}")
+	public String viewCourse2(@PathVariable("courseId") Integer courseId,
+			Map<String, Object> model) {
+		log.debug("In viewCourse2, courseId = {}", courseId);
+		Course course = courseService.getCoursebyId(courseId);
+		model.put("course", course);
+		return "course_overview";
+	}
+
+console：
+
+	40501 [qtp635001030-18] DEBUG com.coderdream.mvcdemo.controller.CourseController  - In viewCourse2, courseId = 345
+	40501 [qtp635001030-18] DEBUG com.coderdream.mvcdemo.controller.CourseController  - In viewCourse2, courseId = 345
+
+
 4-4 Controller-传统方式 (04:24)
 
 4-5 Binding (11:51)
