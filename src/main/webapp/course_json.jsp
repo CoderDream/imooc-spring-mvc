@@ -48,10 +48,7 @@ jQuery(function($){
 });
 </script>
 <body>
-
-
 	<div id="main">
-
 		<div class="newcontainer" id="course_intro">
 			<div class="course-title"></div>
 			<div class="course_info">
@@ -72,25 +69,19 @@ jQuery(function($){
 						<li><span>课程难度</span> <em id="levelDesc"></em></li>
 					</ul>
 				</div>
-
 			</div>
 			<div class="course_list">
 				<div class="outline">
 					<h3 class="chapter_introduces">课程介绍</h3>
 					<div class="course_shortdecription"></div>
-
 					<h3 class="chapter_catalog">课程提纲</h3>
 					<ul id="couList">
-						
 					</ul>
 				</div>
-
 			</div>
 		</div>
-
 	</div>
-
-    <div id="chapterTemplate"  style="display:none">
+    <div id="chapterTemplate" style="display:none">
        <li class="clearfix open"><a href="#">
 				<div class="openicon"></div>
 				<div class="outline_list l">

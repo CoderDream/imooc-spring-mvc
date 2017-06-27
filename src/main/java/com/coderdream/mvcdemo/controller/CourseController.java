@@ -11,6 +11,8 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.coderdream.mvcdemo.model.Course;
@@ -87,7 +90,11 @@ public class CourseController {
 	}
 
 	@RequestMapping(value = "/upload", method = RequestMethod.GET)
-	public String showUploadPage() {
+	public String showUploadPage(
+			@RequestParam(value = "multi", required = false) Boolean multi) {
+		if (multi != null && multi) {
+			return "course_admin/multifile";
+		}
 		return "course_admin/file";
 	}
 
@@ -101,5 +108,20 @@ public class CourseController {
 					System.currentTimeMillis() + file.getOriginalFilename()));
 		}
 		return "success";
+	}
+
+	// http://localhost:8080/courses/345
+	@RequestMapping(value = "/{courseId}", method = RequestMethod.GET)
+	public @ResponseBody Course getCourseInJson(
+			@PathVariable Integer courseId) {
+		return courseService.getCoursebyId(courseId);
+	}
+
+	// http://localhost:8080/courses/jsontype/345
+	@RequestMapping(value = "/jsontype/{courseId}", method = RequestMethod.GET)
+	public ResponseEntity<Course> getCourseInJson2(
+			@PathVariable Integer courseId) {
+		Course course = courseService.getCoursebyId(courseId);
+		return new ResponseEntity<Course>(course, HttpStatus.OK);
 	}
 }

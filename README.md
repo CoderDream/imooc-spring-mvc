@@ -195,11 +195,22 @@ console：
 
 4-7 JSON（上） (03:41)
 
+http://localhost:8080/courses/345
+
+http://localhost:8080/courses/jsontype/345
+
 4-8 JSON（中） (05:23)
 
 4-9 JSON（下） (04:46)
+
+http://localhost:8080/course_json.jsp?courseId=123
+
 
 第5章 总结 
 ----------
 
 5-1 总结 (02:44)
+
+mediaTypes错误（Bean property 'mediaTypes' is not writable or has an invalid setter method.）
+
+http://blog.csdn.net/csdn_terence/article/details/53888741
